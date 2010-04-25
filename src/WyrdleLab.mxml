@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	backgroundColor="0x333333" xmlns:wyrdle="com.frankjania.wyrdlelab.*"
+	pageTitle="Wyrdle Lab" width="1100" height="700"
+	paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" horizontalAlign="left">
+	<mx:Style>
+	@font-face {
+		src:local("Teen");
+		fontFamily: Teen;
+		advancedAntiAliasing: true;
+	}
+	CheckBox {
+		fontWeight: bold;
+		color: white;
+		roll-over-color: white;
+	}
+    </mx:Style>
+
+    <mx:Script>
+      <![CDATA[
+      	//import com.frankjania.wyrdlelab.PlacementStrategy;
+      	import mx.controls.Alert;
+      	import mx.utils.ObjectUtil;
+      	import com.frankjania.wyrdlelab.WordList;
+      	import mx.collections.ArrayCollection;
+      	
+      	[Bindable]
+      	public var wordList:WordList = new WordList()
+      	
+      ]]>
+    </mx:Script>
+
+    <mx:HBox width="100%" height="100%">
+
+        <mx:VBox width="80%" height="100%" >
+			<mx:Panel width="100%" height="100%" title="Wyrdle!">
+				<wyrdle:WordLayoutCanvas id="wlc" backgroundColor="white" backgroundAlpha="0.0" width="100%" height="100%" />
+			</mx:Panel>
+<!--
+
+			<mx:Panel width="100%" height="220" title="Wyrdle! (DEBUG)">
+				<mx:Canvas id="wlcdebug"  width="100%" height="100%"/>
+			</mx:Panel>
+
+-->
+		</mx:VBox>
+		
+<!--
+        <mx:VBox width="20%" height="100%" >
+        	<mx:Panel width="100%" height="100%" title="Debug">
+	            <mx:TextArea id="debug" width="100%" height="100%" fontSize="9"/>
+			</mx:Panel>
+        </mx:VBox>
+-->       
+
+        <mx:VBox width="20%" height="100%" >
+        	<mx:Panel width="100%" title="Color Palette" backgroundColor="0x666666">
+			    <mx:HBox width="100%" height="20" >
+		            <mx:ColorPicker id="color1" change="wlc.colorWords();" selectedColor="0x003366"/>
+		            <mx:ColorPicker id="color2" change="wlc.colorWords();" selectedColor="0x660033"/>
+		            <mx:ColorPicker id="color3" change="wlc.colorWords();" selectedColor="0x336600"/>
+		            <mx:ColorPicker id="color4" change="wlc.colorWords();" selectedColor="0x663300"/>
+	            </mx:HBox>
+			</mx:Panel>
+
+        	<mx:Panel width="100%" height="100%" title="Wyrd List">
+
+	            <mx:DataGrid id="wyrdlist" width="100%" height="100%" dataProvider="{wordList}"
+	            	dragMoveEnabled="true" dragEnabled="true" allowMultipleSelection="true"
+	            	creationComplete="wordList.loadWords();">
+					<mx:columns>
+						<mx:DataGridColumn id="wordlistname"
+		                    headerText="Word"
+		                    dataField="word"
+		                    width="50"/>
+						<mx:DataGridColumn id="wordlistcount"
+		                    headerText="Count"
+		                    dataField="count"
+		                    width="30" sortDescending="true"/>
+<!--
+						<mx:DataGridColumn id="normal"
+		                    headerText="Normal"
+		                    dataField="normalized"
+		                    width="30" sortDescending="true"/>
+						<mx:DataGridColumn id="fontsize"
+		                    headerText="Font Size"
+		                    dataField="fontSize"
+		                    width="30" sortDescending="true"/>
+-->
+					</mx:columns>
+	            </mx:DataGrid>
+
+			</mx:Panel>
+		    <mx:HBox width="100%" height="20" >
+	            <mx:Button id="refreshwlc" width="100%" height="20" click="wlc.refresh();" label="Create a Wyrdle"/>
+	            <!-- <mx:Button id="Other" width="50%" height="20" click="wlc.loadWordList();" label="Load Wyrds"/> -->
+            </mx:HBox>
+
+		    <mx:HBox width="100%" height="20" >
+		    <!-- 
+	            <mx:HSlider width="125" id="scaler" value="1.0" minimum="0.1" maximum="5" 
+	            	liveDragging="true" thumbDrag="wlc.containerSprite.scaleX=scaler.value; wlc.containerSprite.scaleY=scaler.value;"/>
+	        -->
+	            <mx:CheckBox id="animate" selected="true" change="wlc.toggleWords(animate.selected)" label="Show Words"/>
+	        </mx:HBox>
+<!--
+		    <mx:HBox width="100%" height="20" >
+	            <mx:HSlider width="100%" id="variable" value="{PlacementStrategy.maxUncle}" minimum="0" maximum="50" 
+	            	liveDragging="true" thumbDrag="{PlacementStrategy.maxUncle=variable.value}"/>
+	        </mx:HBox>
+-->
+        </mx:VBox>
+
+    </mx:HBox>
+</mx:Application>
+

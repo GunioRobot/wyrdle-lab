@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple example to demonstrate the Glow effect. -->
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml">
+
+    <mx:Glow id="glowImage" duration="1000" 
+        alphaFrom="1.0" alphaTo="1" 
+        blurXFrom="0.0" blurXTo="10" 
+        blurYFrom="0.0" blurYTo="10"
+        strength="255"
+        color="0x00FF00"/>
+    <mx:Glow id="unglowImage" duration="1000" 
+        alphaFrom="1" alphaTo="1.0" 
+        blurXFrom="0" blurXTo="0.0" 
+        blurYFrom="0" blurYTo="0.0" 
+        color="0x0000FF"/>
+
+    <mx:Panel title="Glow Effect Example" width="75%" height="75%" 
+        paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10">
+
+        <mx:Text width="100%" color="blue"
+            text="Click and hold the mouse on the image to see glowImage effect. Release the mouse to see unglowImage effect."/>
+            
+        <mx:Text text="TEST" fontSize="300"
+            mouseDownEffect="{glowImage}" 
+            mouseUpEffect="{unglowImage}"/>
+        
+    </mx:Panel>
+</mx:Application>
