@@ -5,27 +5,23 @@ package com.frankjania.wyrdlelab.strategy
 	
 	import flash.geom.Point;
 	
-	public class EllipticalSpiralPlacementStrategy extends PlacementStrategy
+	// This doesn't even come close to working.
+	
+	public class GalaxyPlacementStrategy extends PlacementStrategy
 	{
-		private var angle:Number = 0;
+		private static var angle:Number = -45;
 		private var radius:Number = 0;
 		private var radiusRatio:Number = 1.2;
 
 		private var angleStart:Number = 0;
 
-		private var angleStep:Number = 10;
-		private var radiusStep:Number = 0.2;
+		private var angleStep:Number = 1;
+		private var radiusStep:Number = 30.2;
 		
 		private var xOffset:int = 0;
-		
-		override public function layoutOneByOne():Boolean{
-			return true;
-		}
 
 		override public function resetStrategy():void{
 			radius = 0;
-			xOffset = 0;
-			angle = Math.random() * 360;
 		}		
 
 		override public function placeTrendWithStrategy(trend:Trend):void{

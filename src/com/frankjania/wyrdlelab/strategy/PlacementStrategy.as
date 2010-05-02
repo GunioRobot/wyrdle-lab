@@ -1,43 +1,41 @@
 package com.frankjania.wyrdlelab.strategy
 {
-	import com.frankjania.wyrdlelab.CandidateWord;
-	import com.frankjania.wyrdlelab.WordLayoutCanvas;
-	
-	import mx.collections.ArrayCollection;
-	import mx.core.Application;
+	import com.frankjania.wyrdlelab.collisiondetection.CollisionDetectionSystem;
+	import com.frankjania.wyrdlelab.core.Trend;
 	
 	public class PlacementStrategy
 	{
-		protected var wlc:WordLayoutCanvas;
-		protected var wl:ArrayCollection;
+		
+		public function placeTrend(trend:Trend):void{
+			placeTrendWithStrategy(trend);
 
-		public function initLayout(wordLayoutCanvas:WordLayoutCanvas):void{
-			this.wlc = wordLayoutCanvas;
-			this.wl = wordLayoutCanvas.wordList;
-
-			for each (var w:CandidateWord in wl){
-				if (!w.fixed){
-					w.relayout = true;
-					w.placed = false;
-	            	w.visible = false;
-				}
-				w.setTextColor(WordLayoutCanvas.BASE_COLOR);
-			}
-		}
-
-		public function placeWords(wlc:WordLayoutCanvas):void{
-			initLayout(wlc);
-			_placeWords();
+			// store the position in the trend for playback later
+			trend.x = trend.cde.getPoint().x;
+			trend.y = trend.cde.getPoint().y;
+			
+			// add AFTER it's been placed. Existing on the stage is
+			// how we know it's been placed.
+			CollisionDetectionSystem.addElementToStage(trend.cde);
 		}
 		
-		public function _placeWords():void{
-			
+		public function placeTrendWithStrategy(trend:Trend):void{
+			// THIS MUST BE OVERRIDDEN
+			throw new Error("Must override placeTrendInStrategy in sub-class");
 		}
 
-		private function d(s:String, append:int=0):void{
-			s += "\n";
-			if (append>0) Application.application.debug.text += s;
-			else Application.application.debug.text = s;
+		public function resetStrategy():void{
+			// THIS MUST BE OVERRIDDEN
+			throw new Error("Must override resetStrategy in sub-class");
 		}
+		
+		public function layoutOneByOne():Boolean{
+			// This must be overridden if you want to layout the
+			// words one by by, i.e. one per timer tick. This is
+			// important to set to true if the layou will take a
+			// while to complete.
+			return false;
+		}
+
+
 	}
 }
