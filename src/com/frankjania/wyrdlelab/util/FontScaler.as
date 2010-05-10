@@ -11,8 +11,7 @@ package com.frankjania.wyrdlelab.util
 		}
 		
 		public static function scale(freq:Number):Number{
-			//return slope * freq + intercept;
-			return 22;
+			return slope * freq + intercept;
 		}
 
 	}

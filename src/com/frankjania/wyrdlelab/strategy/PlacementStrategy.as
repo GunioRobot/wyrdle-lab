@@ -1,12 +1,12 @@
 package com.frankjania.wyrdlelab.strategy
 {
 	import com.frankjania.wyrdlelab.collisiondetection.CollisionDetectionSystem;
-	import com.frankjania.wyrdlelab.core.Trend;
+	import com.frankjania.wyrdlelab.core.Word;
 	
 	public class PlacementStrategy
 	{
 		
-		public function placeTrend(trend:Trend):void{
+		public function placeTrend(trend:Word):void{
 			placeTrendWithStrategy(trend);
 
 			// store the position in the trend for playback later
@@ -18,7 +18,7 @@ package com.frankjania.wyrdlelab.strategy
 			CollisionDetectionSystem.addElementToStage(trend.cde);
 		}
 		
-		public function placeTrendWithStrategy(trend:Trend):void{
+		public function placeTrendWithStrategy(trend:Word):void{
 			// THIS MUST BE OVERRIDDEN
 			throw new Error("Must override placeTrendInStrategy in sub-class");
 		}

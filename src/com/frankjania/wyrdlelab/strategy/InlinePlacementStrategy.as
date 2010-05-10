@@ -1,7 +1,7 @@
 package com.frankjania.wyrdlelab.strategy
 {
 	import com.frankjania.wyrdlelab.collisiondetection.CollisionDetectionSystem;
-	import com.frankjania.wyrdlelab.core.Trend;
+	import com.frankjania.wyrdlelab.core.Word;
 	
 	import flash.geom.Point;
 	
@@ -16,7 +16,7 @@ package com.frankjania.wyrdlelab.strategy
 			yaxis = -275;
 		}		
 
-		override public function placeTrendWithStrategy(trend:Trend):void{
+		override public function placeTrendWithStrategy(trend:Word):void{
 			do {
 				trend.cde.setPoint( pointOnLine() );
 			} while (CollisionDetectionSystem.testCollision(trend.cde))

@@ -1,6 +1,6 @@
 package com.frankjania.wyrdlelab.strategy
 {
-	import com.frankjania.wyrdlelab.core.Trend;
+	import com.frankjania.wyrdlelab.core.Word;
 	
 	import flash.geom.Point;
 	
@@ -17,7 +17,7 @@ package com.frankjania.wyrdlelab.strategy
 			placementHeight = -275;
 		}		
 
-		override public function placeTrendWithStrategy(trend:Trend):void{
+		override public function placeTrendWithStrategy(trend:Word):void{
 			trend.cde.setPoint( new Point(xaxis, placementHeight) );
 			placementHeight += trend.cde.getBounds().height;
 		}

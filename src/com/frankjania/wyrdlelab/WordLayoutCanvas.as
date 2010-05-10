@@ -402,7 +402,7 @@ package com.frankjania.wyrdlelab
 			placementStrategy = new EllipticalSpiralPlacementStrategy();
 			//placementStrategy = new RandomWithoutOverlapPlacementStrategy();
 			startPlacementTime = new Date();
-			placementStrategy.placeWords(this);
+//			placementStrategy.placeWords(this);
 			
 //			with (Application.application.wlcdebug.graphics){
 //				beginBitmapFill(wordCanvasBD);

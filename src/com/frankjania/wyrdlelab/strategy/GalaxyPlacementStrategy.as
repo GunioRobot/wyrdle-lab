@@ -1,7 +1,7 @@
 package com.frankjania.wyrdlelab.strategy
 {
 	import com.frankjania.wyrdlelab.collisiondetection.CollisionDetectionSystem;
-	import com.frankjania.wyrdlelab.core.Trend;
+	import com.frankjania.wyrdlelab.core.Word;
 	
 	import flash.geom.Point;
 	
@@ -24,7 +24,7 @@ package com.frankjania.wyrdlelab.strategy
 			radius = 0;
 		}		
 
-		override public function placeTrendWithStrategy(trend:Trend):void{
+		override public function placeTrendWithStrategy(trend:Word):void{
 			resetStrategy();
 			do {
 				trend.cde.setPoint( pointOnEllipse() );

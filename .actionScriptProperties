@@ -11,8 +11,8 @@
   <applications>
     <application path="WyrdleLab.mxml"/>
     <application path="SampleTest.mxml"/>
+    <application path="CloudExample.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
 </actionScriptProperties>
-

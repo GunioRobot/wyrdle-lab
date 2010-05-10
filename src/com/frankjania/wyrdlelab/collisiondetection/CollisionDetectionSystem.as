@@ -1,7 +1,7 @@
 package com.frankjania.wyrdlelab.collisiondetection
 {
 	import com.frankjania.wyrdlelab.core.Settings;
-	import com.frankjania.wyrdlelab.core.Trend;
+	import com.frankjania.wyrdlelab.core.Word;
 	import com.frankjania.wyrdlelab.display.CloudComponent;
 	import com.frankjania.wyrdlelab.strategy.PlacementStrategy;
 	import com.frankjania.wyrdlelab.util.FontScaler;
@@ -18,12 +18,7 @@ package com.frankjania.wyrdlelab.collisiondetection
 	{
 		private static var elements:Dictionary = new Dictionary();
 		private static var stage:Dictionary = new Dictionary();
-		
-		private static var cdeGeneratorSprite:Sprite = new Sprite();
-		private static var fmt:TextFormat = new TextFormat();
-		private static var txt:TextField = new TextField();
-		private static var txtAdded:Boolean = false;
-		
+				
 		private static var strategy:PlacementStrategy = Settings.placementStrategy;
 
 		public static function getElement(hash:String):CollisionDetectionElement{
@@ -42,7 +37,7 @@ package com.frankjania.wyrdlelab.collisiondetection
 			return stage[element.getHash()] != null;
 		}
 		
-		public static function placeTrend(trend:Trend):void{
+		public static function placeTrend(trend:Word):void{
 			strategy.placeTrend(trend);
 		}
 		
@@ -67,38 +62,5 @@ package com.frankjania.wyrdlelab.collisiondetection
 			strategy.resetStrategy();
 		}
 		
-		public static function generateCollisionDetectionElement(trend:Trend):CollisionDetectionElement{
-			
-			fmt.font = CloudComponent.font;
-			txt.text = trend.text;
-			txt.autoSize = TextFieldAutoSize.LEFT;
-			txt.embedFonts = true;
-			txt.selectable = false;
-			txt.mouseEnabled = false;
-			
-			var div:uint = (-226*trend.frequency/23) + 265;
-			fmt.color = div*0x10000 + div*0x100 + div;
-			fmt.size = FontScaler.scale(trend.frequency);
-  			txt.setTextFormat(fmt);
-  			txt.x = -1 * txt.width/2;
-  			txt.y = -1 * txt.height/2;
-
-			if (!txtAdded){
-				cdeGeneratorSprite.addChild(txt);
-				txtAdded = true;
-			}
-			
-			var cde:CollisionDetectionElement = CollisionDetectionSystem.getElement(trend.hashcode());
-			if (cde == null){
-				var bmp : BitmapData = new BitmapData(txt.width, txt.height, false, 0xffffff);
-				bmp.draw(txt);
-				
-				var r:Rectangle = bmp.getColorBoundsRect(0xFFFFFFFF, fmt.color as uint);
-				cde = new CollisionDetectionElement(trend.hashcode(), new Rectangle(r.x - txt.width/2, r.y - txt.height/2, r.width, r.height) );
-				CollisionDetectionSystem.addElementToSystem(cde);
-			}
-
-			return cde;
-		}
 	}
 }
